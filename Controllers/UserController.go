@@ -28,7 +28,9 @@ func CreateUser(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"message": err.Error()})
 		return
 	}
+
 	Database.DB.Preload("Kelas").Create(&user)
+	
 	c.JSON(http.StatusOK, gin.H{"user": user})
 }
 
